@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://kit.fontawesome.com/a363e36294.js" crossorigin="anonymous"></script>
+    <title>My_Portfolio</title>
+</head>
+<style>
+ body {
+  margin: 0;
+  padding: 0;
+  font-family: lato, sans-serif;
+  scroll-behavior: smooth; 
+  background-color: black; 
+}
+
+.background {
+  background-color: #000; /* Dark background * 
+  position: relative; /* Establish stacking context */
+}
+
+
+canvas {
+  
+  display: block; /* Remove scrollbars */
+  position: fixed; /* Allow positioning */
+  top: 0;
+  left: 0;
+  z-index: 0; /* Behind other elements */
+  pointer-events: none;
+}
+
+.hero {
+  z-index: 1; /* Place above the canvas */
+  color: white;
+}
+
+.headings{
+    z-index:1;
+}
+
+.profile{
+  height:500px ;
+  width: 400px ;
+  z-index:1000;
+  box-shadow: 0 4px 15px rgba(55, 232, 5, 0.5); /* Add glow */
+}
+@media (min-width:320px) and ( max-width:768px) {
+
+.profile{
+  height:300px;
+  width: 250px ;
+  border-radius:50%;
+}
+.para{
+  display:none;
+}
+.skills-container{
+  display: flex;
+  flex-direction: column;
+}
+.heading{
+  text-align: center;
+}
+.images-container{
+  font-size:20px;
+}
+
+}
+
+@keyframes flowingShadow {
+  0% {
+      text-shadow: -100px 0 20px white, 0 0 40px white, 100px 0 80px rgba(255, 255, 255, 0);
+    }
+    50% {
+      text-shadow: 0 0 10px white, 50px 0 50px white, 100px 0 80px white;
+    }
+    100% {
+      text-shadow: 0px 0 20px white, 0 0 40px white, -100px 0 80px rgba(255, 255, 255, 0);
+    }
+  }
+.animation-glow{
+  text-shadow: 0 0 5px white, 0 0 10px white, 0 0 20px white; /* Base glow */
+  animation:5s flowingShadow  ease-in-out 6s 1 ;
+  animation-fill-mode: forwards;
+}
+.rigid-btn {
+  color: white;
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.25); /* Subtle shadow for depth */
+  transition: transform 0.2s ease, box-shadow 0.2s ease; /* Smooth hover effects */
+}
+
+.rigid-btn:hover {
+  transform: scale(1.05); /* Slight enlargement on hover */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4); /* Stronger shadow */
+  background: linear-gradient(90deg, #ff0000, #ff7f00, #ffff00, #00ff00, #0000ff, #4b0082, #8b00ff); /* Bold gradient colors */
+}
+
+.rigid-btn:active {
+  transform: scale(0.98); /* Shrink slightly on click */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Softer shadow */
+
+}
+
+@keyframes mymove {
+  0%{transform:translatex(-300px);
+    opacity:0;
+  }
+  50% {transform:translatex(60px);
+    opacity:1;}
+  100%{transform:tranlatex(50px);
+    opacity:1;}
+}
+.animate-slide{
+  opacity: 0;
+  animation: 3s mymove ease-in-out 8s 1;
+  animation-fill-mode: forwards;
+}
+.animation-heading{
+  opacity: 0;
+  animation: 3s slide ease-in-out 3s 1;
+  animation-fill-mode: forwards;
+}
+@keyframes slide {
+  0%{transform:translateY(100px);
+    opacity:0;
+  }
+  100%{transform:tranlateY(50px);
+    opacity:1;}
+}
+.animation-name{
+  opacity: 0;
+  animation: 3s pop-out ease-in-out 5s 1;
+  animation-fill-mode: forwards;
+}
+@keyframes pop-out {
+  0%{
+    opacity:0;
+  }
+  100%{
+    opacity:1;}
+}
+@keyframes slide-in {
+  0%{transform:translateX(100px);
+    opacity:0;
+  }
+  100%{transform:tranlateX(50px);
+    opacity:1;}
+  }
+  .animation-para{
+    opacity: 0;
+    animation: 3s slide-in ease-in-out 7s 1;
+    animation-fill-mode: forwards;
+  }
+  @keyframes slide-into{
+    0%{transform:translateX(100px);
+    opacity:0;
+  }
+    100%{transform:tranlateX(50px);
+      opacity:1;}
+  }
+  .animation-icon1{
+    opacity: 0;
+    animation: 1s slide-into ease-out 9s 1;
+    animation-fill-mode: forwards;
+  }
+  .animation-icon2{
+    opacity: 0;
+    animation: 1s slide-into ease-out 9.5s 1;
+    animation-fill-mode: forwards;
+  }
+  .animation-icon3{
+    opacity: 0;
+    animation: 1s slide-into ease-out 10s 1;
+    animation-fill-mode: forwards;
+  }
+  .animation-icon4{
+    opacity: 0;
+    animation: 1s slide-into ease-out 10.5s 1;
+    animation-fill-mode: forwards;
+  }
+  .animation-icon5{
+    opacity: 0;
+    animation: 1s slide-into ease-out 11s 1;
+    animation-fill-mode: forwards;
+  }
+  .animation_cv{
+    opacity: 0;
+    animation: 1s slide-into ease-out 9s 1;
+    animation-fill-mode: forwards;
+  }
+  .contact{
+     z-index:1;
+  }
+  
+  .icon{
+    box-shadow: 0 4px 15px rgba(225, 225, 225, 0.5);
+    box-shadow: 4px 0px 15px rgba(225, 225, 225, 0.5);
+    scale: 1;
+
+  }
+  .icon:hover{
+    scale: 1.1;
+  }
+  .images-container{
+    position: fixed; /* Fixes the navbar */
+    right: 0;         /* Aligns to the left side */ 
+    z-index: 10000;   /* Full height */
+    margin-right:30px;
+    margin-top:30px; 
+  }
+  .contact-head{
+    z-index:1;
+  }
+
+@keyframes slide_down {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(-0%);
+  }
+}
+.project_heading_animation{
+  animation: slide_down 1s ease-in ;
+}
+.open:hover{
+  background-color: linear-gradient(to right, blue, red);
+  z-index: 2;
+}
+.project{
+  z-index: 10;
+}
+
+.visit-btn {
+  z-index: 1000;
+  pointer-events: auto;
+}
+
+
+</style>
+<body>
+    <div class="background min-h-screen section active flex flex-col justify-evenly w-full" id="home">
+        <canvas id="particleCanvas"></canvas>
+        <div class="hero flex xl:flex-row  min-h-screen justify-evenly p-10 flex-col  sm:flex-col ">
+            <img class="h-64 w-64 animate-slide  transform hover:scale-105 transition-all duration-300 ease-in-out profile icon mr-20 text-center" src="assests/hd_image.png" alt="profile-image "  />
+            <div  class="headings flex flex-col justify-between items-start  w-128 h-128">
+                <h1 class="text-5xl font-bold text-white mb-4 animation-heading">Hi,</h1>
+                <h1 class="text-white  text-4xl  mt-18 mb-18 animation-name">I'M <br> <span class="text-black font-bold animation-glow">GANESH RATHNAM KUPAR</span></h1>
+                <p class="text-2xl text-white mb-4 animation-para">I am a Frontend developer passionate about crafting responsive and dynamic websites.</p>
+
+                <button class="border border-white rounded-lg drop-shadow-lg p-4 animation_cv transform hover:scale-105 transition-all duration-300 ease-in-out hover:bg-cyan-400"><a href="assests/Kupra Ganesh Rathnam CV (3).pdf" download="Kupra Ganesh Rathnam CV (3).pdf" >Download Cv<i class="fa-regular fa-circle-down m-2"></i></a></button>
+                  
+                </div>
+                <nav class="images-container">
+                  <ul class="">
+                     <li class=" sm:text-xl md:text-xl lg:text-4xl icon text-3xl border-2 border-white-500 rounded-4xl p-5 m-5 text-center  shadow-2xl rigid-btn transition-all duration-300 ease animation-icon1  transform hover:scale-105 ease-in-out"><a href="#home"><i class="fas fa-home"></i></a></li>
+                     <li  class="sm:text-xl md:text-xl lg:text-4xl icon text-3xl border-2 border-white-500 rounded-4xl p-5 m-5 text-center  shadow-2xl rigid-btn transition-all duration-300 ease animation-icon2 transform hover:scale-105"><a href="#aboutme"><i class="fas fa-user"></i></a></li>
+                     <li  class=" sm:text-xl md:text-xl lg:text-4xl icon text-3xl border-2 border-white-500 rounded-4xl p-5 m-5 text-center  shadow-2xl rigid-btn transition-all duration-300 ease animation-icon3 transform hover:scale-105"><a href="#skills"><i class="fa-solid fa-laptop-code"></i></a></li>
+                     <li  class=" sm:text-xl md:text-xl lg:text-4xl icon text-3xl border-2 border-white-500 rounded-4xl p-5 m-5 text-center  shadow-2xl rigid-btn transition-all duration-300 ease animation-icon4 transform hover:scale-105"><a href="#projects"><i class="fa-solid fa-briefcase"></i></a></li>
+                     <li  class=" sm:text-xl md:text-xl lg:text-4xl icon text-3xl border-2 border-white-500 rounded-4xl p-5 m-5 text-center  shadow-2xl rigid-btn transition-all duration-300 ease animation-icon5 transform hover:scale-105"><a href="#contact"><i class="fa-regular fa-envelope"></i></a></li>
+                  </ul>
+                </nav>
+              </div>
+        </div>
+        <!--About section-->
+     <div class="background p-10 min-h-screen section " id="aboutme">
+          <canvas id="particleCanvas"></canvas>
+          <div class="flex flex-col   min-h-screen sm:text-2xl ">
+            <div>
+              <h1 class="text-center text-6xl sm:text-2xl md:text-3xl lg:text-4xl font-sans text-transparent font-bold heading" style="-webkit-text-stroke:2px white;">ABOUT <span class="text-transparent text-6xl font-bold bg-gradient-to-r from-blue-500 to-purple-500 bg-clip-text sm:text-2xl md:text-3xl lg:text-4xl">ME</span></h1>
+              <h2 class="text-white text-bold text-4xl mt-10 sm:text-xl md:text-2xl lg:text-3xl mb-20">I am a <span class="typing-text text-emerald-400 font-extrabold">Fresher | Web Developer | Responsive Web Designer | Enthusiastic About New Technologies</span></h2>
+           </div>
+            <div class="flex flex-row ">
+              <p class="text-white text-2xl mt-10 w-1/2 xs:text-md sm:text-lg md:text-xl lg:text-xl para">
+                I am a Web Developer  
+                As a dedicated Frontend Developer, I possess a strong passion for design and a genuine enthusiasm for learning new technologies. I aim to craft clean, efficient, and user-friendly websites utilizing contemporary web development tools. My objective is to consistently enhance my skills and broaden my knowledge base.</p>
+              <img class="ml-30 profile rounded-xl hover:animate-bounce transition-all duration-300 ease-in-out sm:rounded-full md:rounded-full lg:rounded-xl" src="assests/hd_image.png" alt="profile-image " />
+            </div> 
+          </div>
+        </div>
+        <!--Skills Container-->
+        <div class="background p-20 section w-full" id="skills">
+          <canvas id="particleCanvas"></canvas>
+          <div class="hero min-h-screen w-full">
+            <h1 class="text-center text-6xl font-sans text-transparent font-bold sm:text-2xl md:text-3xl lg:text-4xl" style="-webkit-text-stroke:2px white;">SKILLS </h1>
+            <div class="flex lg:flex-row justify-around mb-20 min-h-screen  mr-10 flex-col w-full sm:flex-col md:flex-col ">
+              <!-- Left Column -->
+              <div class="space-y-4 flex flex-col justify-around ">
+                  <div class="text-white text-xl flex items-center space-x-3">
+                      <span class="font-medium w-24">HTML</span>
+                      <div class="relative w-100 bg-gray-600 h-2 rounded-full">
+                          <div class="h-2 bg-gradient-to-r from-red-500 to-blue-500 rounded-full skill-bar" data-percentage="90"></div>
+                      </div>
+                      <span class="font-medium">90%</span>
+                  </div>
+  
+                  <div class="text-white text-xl flex items-center space-x-3">
+                      <span class="font-medium w-24">CSS</span>
+                      <div class="relative w-100 bg-gray-600 h-2 rounded-full">
+                          <div class="h-2 bg-gradient-to-r from-red-500 to-blue-500 rounded-full skill-bar" data-percentage="80"></div>
+                      </div>
+                      <span class="font-medium">80%</span>
+                  </div>
+  
+                  <div class="text-white text-xl flex items-center space-x-3">
+                      <span class="font-medium w-28">BOOTSTRAP</span>
+                      <div class="relative w-100 bg-gray-600 h-2 rounded-full">
+                          <div class="h-2 bg-gradient-to-r from-red-500 to-blue-500 rounded-full skill-bar" data-percentage="75"></div>
+                      </div>
+                      <span class="font-medium">75%</span>
+                  </div>
+
+                  <div class="text-white text-xl flex items-center space-x-3">
+                    <span class="font-medium w-24">PYTHON</span>
+                    <div class="relative w-100 bg-gray-600 h-2 rounded-full">
+                        <div class="h-2 bg-gradient-to-r from-red-500 to-blue-500 rounded-full skill-bar" data-percentage="80"></div>
+                    </div>
+                    <span class="font-medium">80%</span>
+                </div>
+
+              </div>
+  
+              <!-- Right Column -->
+              <div class="space-y-4 flex flex-col justify-around">
+                  <div class="text-white text-xl flex items-center space-x-3">
+                      <span class="font-medium w-28">JAVASCRIPT</span>
+                      <div class="relative w-100 bg-gray-600 h-2 rounded-full">
+                          <div class="h-2 bg-gradient-to-r from-red-500 to-blue-500 rounded-full skill-bar" data-percentage="70"></div>
+                      </div>
+                      <span class="font-medium">70%</span>
+                  </div>
+  
+                  <div class="text-white text-xl flex items-center space-x-3">
+                      <span class="font-medium w-24">REACT JS</span>
+                      <div class="relative w-100 bg-gray-600 h-2 rounded-full">
+                          <div class="h-2 bg-gradient-to-r from-red-500 to-blue-500 rounded-full skill-bar" data-percentage="60"></div>
+                      </div>
+                      <span class="font-medium">60%</span>
+                  </div>
+  
+                  <div class="text-white text-xl flex items-center space-x-3">
+                      <span class="font-medium w-24">TAILWIND</span>
+                      <div class="relative w-100 bg-gray-600 h-2 rounded-full">
+                          <div class="h-2 bg-gradient-to-r from-red-500 to-blue-500 rounded-full skill-bar" data-percentage="85"></div>
+                      </div>
+                      <span class="font-medium">85%</span>
+                  </div>
+
+                  <div class="text-white text-xl flex items-center space-x-3">
+                    <span class="font-medium w-24">SQL</span>
+                    <div class="relative w-100 bg-gray-600 h-2 rounded-full">
+                        <div class="h-2 bg-gradient-to-r from-red-500 to-blue-500 rounded-full skill-bar" data-percentage="80"></div>
+                    </div>
+                    <span class="font-medium">80%</span>
+                </div>
+
+              </div>
+            </div>
+          <!--    -->
+            </div>
+        </div>
+        <!--Projects  Container-->
+        <div class="background min-h-screen section " id="projects">
+            <canvas id="particleCanvas"></canvas>
+            <div class=" project">
+              <h1 class=" text-center text-6xl sm:text-2xl md:text-3xl lg:text-4xl font-sans text-transparent font-bold project_heading_animation" style="-webkit-text-stroke:2px white;">PROJECTS</h1>
+              <div class="flex flex-col items-center">
+              <div class="flex lg:flex-row flex-col  mt-10 sm:flex-col md:flex-col">
+                <!-- Project 1 -->
+                <div class="flex flex-col items-center text-center p-10 border-2 border-white h-70 w-100 m-8 project_heading_animation">
+                  <img class="w-34 h-34 rounded-full object-cover" src="https://www.simplilearn.com/ice9/free_resources_article_thumb/project_management_coursefees.jpg" alt="project-image">
+                  <h2 class="mt-4 text-xl font-bold">Project Title 1</h2>
+                  <p class="text-sm text-white"> To see the project click button below</p>
+                  <a href="https://rathnamganesh.github.io/TodoList/" target="_blank" class="text-white border-2 border-white hover:bg-gradient-to-r from-blue-500 to-red-500 hover:border-0 px-4 py-2 rounded-2xl mt-4 visit-btn">Visit Site</a>
+                </div>
+                <!-- Project 2 -->
+                <div class="project-card flex flex-col items-center text-center p-10 border-2 border-white h-70 w-100 m-8 project_heading_animation">
+                  <img class="w-34 h-34 rounded-full object-cover" src="https://via.placeholder.com/150" alt="project-image">
+                  <h2 class="mt-4 text-xl font-bold">Project Title 1</h2>
+                  <p class="text-sm text-white">To see the project click button below.</p>
+                  <a href="#" class="text-white border-2 border-white hover:bg-gradient-to-r from-blue-500 to-red-500 hover:border-0 px-4 py-2 rounded-full mt-4">Visit Site</a>
+                </div>
+                <!--Project 3-->
+                <div class="project-card flex flex-col items-center text-center p-10 border-2 border-white h-70 w-100 m-8 project_heading_animation">
+                  <img class="w-34 h-34 rounded-full object-cover" src="https://via.placeholder.com/150" alt="project-image">
+                  <h2 class="mt-4 text-xl font-bold">Project Title 1</h2>
+                  <p class="text-sm text-white">To see the project click button below</p>
+                  <a href="#" class="text-white border-2 border-white hover:bg-gradient-to-r from-blue-500 to-red-500 hover:border-0 px-4 py-2 rounded-full mt-4">Visit Site</a>
+                </div>
+              </div>
+              <!--    -->
+              <div class="flex lg:flex-row flex-col justify-center items-center  mt-10 sm:flex-col md:flex-col">
+                <!-- Project 4 -->
+                <div class="project-card flex flex-col items-center text-center p-10 border-2 border-white h-70 w-100 m-8 project_heading_animation">
+                  <img class="w-34 h-34 rounded-full object-cover" src="https://www.simplilearn.com/ice9/free_resources_article_thumb/project_management_coursefees.jpg" alt="project-image">
+                  <h2 class="mt-4 text-xl font-bold">Project Title 1</h2>
+                  <p class="text-sm text-white">To see the project click button below</p>
+                  <a href="https://rathnamganesh.github.io/Cloth_Store/" target="_blank" class="text-white border-2 border-white hover:bg-gradient-to-r from-blue-500 to-red-500 hover:border-0 px-4 py-2 rounded-full mt-4 visit-btn">Visit Site</a>
+                </div>
+                <!-- Project 5-->
+                <div class="project-card flex flex-col items-center text-center p-10 border-2 border-white h-70 w-100 m-8 project_heading_animation">
+                  <img class="w-34 h-34 rounded-full object-cover" src="https://www.simplilearn.com/ice9/free_resources_article_thumb/project_management_coursefees.jpg" alt="project-image">
+                  <h2 class="mt-4 text-xl font-bold"> Book Store</h2>
+                  <p class="text-sm text-white">To see the project click button below.</p>
+                  <a href="https://rathnamganesh.github.io/TailwindCssBooksProject/" target="_blank" class="text-white border-2 border-white hover:bg-gradient-to-r from-blue-500 to-red-500 hover:border-0 px-4 py-2 rounded-full mt-4 visit-btn">Visit Site</a>
+                </div>
+                <!--Project 6-->
+                <div class="project-card flex flex-col items-center text-center p-10 border-2 border-white h-70 w-100 m-8 project_heading_animation">
+                  <img class="w-34 h-34 rounded-full object-cover" src="https://www.simplilearn.com/ice9/free_resources_article_thumb/project_management_coursefees.jpg" alt="project-image">
+                  <h2 class="mt-4 text-xl font-bold">Starbucks_clone_app</h2>
+                  <p class="text-sm text-white">To see the project click button below</p>
+                  <a href="https://rathnamganesh.github.io/Starbucks_clone_app/" target="_blank" class="text-white border-2 border-white hover:bg-gradient-to-r from-blue-500 to-red-500 hover:border-0 px-4 py-2 rounded-full mt-4 visit-btn">Visit Site</a>
+                </div>
+              </div>
+            </div>
+            </div>
+        </div>
+        <!--Contact container-->
+        <div class="background min-h-screen  flex flex-col justify-start" id="contact">
+          <canvas id="particleCanvas"></canvas>
+          <h1 class="text-center text-6xl sm:text-2xl md:text-3xl lg:text-4xl font-sans text-transparent font-bold project_heading_animation" style="-webkit-text-stroke:2px white;">Contact <span class=" text-6xl sm:text-2xl md:text-3xl lg:text-4xl font-bold bg-gradient-to-r from-blue-500 to-red-500 bg-clip-text">ME</span></h1>
+          <div class=" rounded-lg shadow-lg text-white h-screen p-20  flex flex-col lg:flex-row justify-start items-center sm:flex-col md:flex-col">  
+            <!-- Contact Form -->
+            <form action="https://formspree.io/f/myzkddzg" method="POST" class="space-y-4 text-white w-3/4 ml-2 project_heading_animation ">
+                <div>
+                    <label class="block text-sm font-medium">Your Name</label>
+                    <input type="text" name="name" placeholder="Enter your name" required
+                        class=" icon w-full sm:w-3/4 px-4 py-2  border border-gray-600 rounded-lg shadow-2xl focus:outline-none focus:ring-2 focus:ring-green-400">
+                </div>
+    
+                <div>
+                    <label class="block text-sm font-medium">Your Email</label>
+                    <input type="email" name="email" placeholder="Enter your email" required
+                        class=" icon w-3/4 px-4 py-2 shadow-2xl border border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-400">
+                </div>
+    
+                <div>
+                    <label class="block text-sm font-medium">Message</label>
+                    <textarea name="message" rows="4" placeholder="Enter your message" required
+                        class=" icon w-3/4 px-4 py-2 shadow-2xl border border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-400"></textarea>
+                </div>
+    
+                <button type="submit" class="w-50 bg-green-500 hover:bg-green-600 text-white py-2 rounded-lg text-lg font-semibold">
+                    Send Message
+                </button>
+            </form>
+
+            <div class="w-3/4">
+               <div class="mt-4 text-lg flex flex-row items-start shadow-2xl p-4 w-3/4  project_heading_animation">
+                   <div class="border-2 border-gray-500  rounded-2xl w-3/4  icon">
+                    <div class="flex flex-row justify-between p-5">
+                      <div class="flex flex-row items-center">
+                        <i class="fa-regular fa-envelope"></i>
+                        <p class="text-white ml-2 sm:text-lg md:text-lg lg:text-xl ">Email: </p>
+                      </div>
+                      <a href="mailto:your@email.com" class="text-white sm:text-lg md:text-lg lg:text-xl w-3/4 hover:text-gray-600">ganeshrathnam91@gmail.com</a>
+                  </div>
+                  <div class="flex flex-row justify-between p-5">
+                    <div class="flex flex-row items-center">
+                      <i class="fa-solid fa-phone"></i>
+                      <p class="text-white ml-2">Phone:</p>
+                    </div>
+                    <p class="text-white">91+ 6303610380</p>
+                </div>
+                </div>
+            </div>
+
+             <!-- Social Links -->
+             <div class="mt-6 text-center flex flex-col items-start project_heading_animation">
+                
+              <div class="flex justify-center space-x-6 ">
+                  <a href="https://x.com/Rathnmak?t=q3X1S91Bwq0zCV5yeBWw-Q&s=09" target="_blank" class=" icon w-18 h-18 flex justify-center items-center text-white text-3xl rounded-full border-1 m-5 border-white hover:text-gray-500 hover:scale-100 transition-all duration-300 ease-in-out">
+                    <i class="fa-brands fa-x-twitter"></i>
+                  </a>
+                  <a href="https://www.linkedin.com/in/ganesh-rathnam-kupar-853152247/" target="_blank" class=" icon w-18 h-18 flex justify-center items-center text-white text-3xl p-5 rounded-full border-1 m-5 border-white hover:text-blue-500">
+                    <i class="fa-brands fa-linkedin"></i>
+                  </a>
+                  <a href="https://github.com/RathnamGanesh" target="_blank" class=" icon w-18 h-18 flex justify-center items-center text-white text-3xl p-5 rounded-full border-1 m-5 border-white hover:text-gray-500">
+
+                    <i class="fa-brands fa-github"></i>
+                  </a>
+              </div>
+              </div>
+              </div>
+        </div> 
+      </div>  
+    <script src="script.js"></script>
+</body>
+</html>
